@@ -9,9 +9,14 @@ import hi.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    MemberRepository memberRepository = new MemoryMemberRepository();
+    private MemberRepository memberRepository;
     // DiscountPolicy discountPolicy = new FixDiscountPolicy();
-    DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    private DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

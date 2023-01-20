@@ -1,8 +1,15 @@
 package hi.core.member;
 
+import hi.core.AppConfig;
+
 public class MemberServiceImpl implements MemberService{
 
-    MemberRepository memberRepository = new MemoryMemberRepository();
+    private MemberRepository memberRepository;
+
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
     @Override
     public void join(Member member) {
         memberRepository.save(member);
