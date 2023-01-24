@@ -6,13 +6,18 @@ import hi.core.discount.RateDiscountPolicy;
 import hi.core.member.Member;
 import hi.core.member.MemberRepository;
 import hi.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
     private MemberRepository memberRepository;
     // DiscountPolicy discountPolicy = new FixDiscountPolicy();
     private DiscountPolicy discountPolicy;
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
