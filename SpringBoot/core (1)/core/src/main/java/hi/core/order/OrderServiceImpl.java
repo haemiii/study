@@ -5,19 +5,19 @@ import hi.core.discount.FixDiscountPolicy;
 import hi.core.discount.RateDiscountPolicy;
 import hi.core.member.Member;
 import hi.core.member.MemberRepository;
-import hi.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
     // DiscountPolicy discountPolicy = new FixDiscountPolicy();
 
     // 1.생성자 방식의 의존관계 주입
@@ -52,24 +52,24 @@ public class OrderServiceImpl implements OrderService{
     }*/
 
     // 호출 안됨!
-    @Autowired(required = false)
-    public void setNoBean1(Member member) {
-        System.out.println("setNoBean1 = " + member);
-    }
-    //null 호출
-    @Autowired
-    public void setNoBean2(@Nullable Member member) {
-        System.out.println("setNoBean2 = " + member);
-    }
-    //Optional.empty 호출
-    @Autowired(required = false)
-    public void setNoBean3(Optional<Member> member) {
-        System.out.println("setNoBean3 = " + member);
-    }
-
-    public MemberRepository getMemberRepository() {
-        return memberRepository;
-    }
+//    @Autowired(required = false)
+//    public void setNoBean1(Member member) {
+//        System.out.println("setNoBean1 = " + member);
+//    }
+//    //null 호출
+//    @Autowired
+//    public void setNoBean2(@Nullable Member member) {
+//        System.out.println("setNoBean2 = " + member);
+//    }
+//    //Optional.empty 호출
+//    @Autowired(required = false)
+//    public void setNoBean3(Optional<Member> member) {
+//        System.out.println("setNoBean3 = " + member);
+//    }
+//
+//    public MemberRepository getMemberRepository() {
+//        return memberRepository;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
