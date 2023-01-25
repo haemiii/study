@@ -7,6 +7,7 @@ import hi.core.member.Member;
 import hi.core.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,15 @@ public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
     // DiscountPolicy discountPolicy = new FixDiscountPolicy();
+
+
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository,
+                            @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
 
     // 1.생성자 방식의 의존관계 주입
 //    @Autowired
