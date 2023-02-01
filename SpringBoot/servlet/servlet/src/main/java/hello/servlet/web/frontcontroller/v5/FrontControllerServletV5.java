@@ -6,8 +6,10 @@ import hello.servlet.web.frontcontroller.MyView;
 import hello.servlet.web.frontcontroller.v3.ControllerV3;
 import hello.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
 import hello.servlet.web.frontcontroller.v3.controller.MemberListControllerV3;
+import hello.servlet.web.frontcontroller.v3.controller.MemberSaveControllerV3;
 import hello.servlet.web.frontcontroller.v4.controller.MemberFormControllerV4;
 import hello.servlet.web.frontcontroller.v4.controller.MemberListControllerV4;
+import hello.servlet.web.frontcontroller.v4.controller.MemberSaveControllerV4;
 import hello.servlet.web.frontcontroller.v5.adapter.ControllerV3HandlerAdapter;
 import hello.servlet.web.frontcontroller.v5.adapter.ControllerV4HandlerAdapter;
 
@@ -41,11 +43,11 @@ public class FrontControllerServletV5 extends HttpServlet {
 
     private void initHandlerMappingMap() {
         handleMappingMap.put("/front-controller/v5/v3/members/new-form", new MemberFormControllerV3());
-        handleMappingMap.put("/front-controller/v5/v3/members/save", new MemberFormControllerV3());
+        handleMappingMap.put("/front-controller/v5/v3/members/save", new MemberSaveControllerV3());
         handleMappingMap.put("/front-controller/v5/v3/members", new MemberListControllerV3());
 
         handleMappingMap.put("/front-controller/v5/v4/members/new-form", new MemberFormControllerV4());
-        handleMappingMap.put("/front-controller/v5/v4/members/save", new MemberFormControllerV4());
+        handleMappingMap.put("/front-controller/v5/v4/members/save", new MemberSaveControllerV4());
         handleMappingMap.put("/front-controller/v5/v4/members", new MemberListControllerV4());
     }
 
@@ -78,8 +80,8 @@ public class FrontControllerServletV5 extends HttpServlet {
     }
 
     private Object getHandler(HttpServletRequest req) {
-        Object handler = handleMappingMap.get(req);
-        return handler;
+        String requestURI = req.getRequestURI();
+        return handleMappingMap.get(requestURI);
     }
     private static MyView viewResolver(String viewName) {
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");

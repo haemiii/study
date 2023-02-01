@@ -25,10 +25,13 @@ public class RequestHeaderServlet extends HttpServlet {
         System.out.println("request.getMethod() = " + request.getMethod()); //GET
         System.out.println("request.getProtocol() = " + request.getProtocol()); //HTTP/1.1
         System.out.println("request.getScheme() = " + request.getScheme()); //http
+
         // http://localhost:8080/request-header
         System.out.println("request.getRequestURL() = " + request.getRequestURL());
+
         // /request-header
         System.out.println("request.getRequestURI() = " + request.getRequestURI());
+
         //username=hi
         System.out.println("request.getQueryString() = " +
                 request.getQueryString());
