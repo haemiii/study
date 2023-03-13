@@ -24,7 +24,7 @@ boxes.reverse()
 results = []
 for i in range(len(boxes)):
     x,y,w,h = boxes[i]
-    roi = gray[y+10:y+h-10, x+10:x+w-10]
+    roi = gray[y+1:y+h, x+2:x+w]
     total_pixels = roi.shape[0] * roi.shape[1]
     black_pixels = total_pixels - cv2.countNonZero(roi)
     if black_pixels > total_pixels/2:
