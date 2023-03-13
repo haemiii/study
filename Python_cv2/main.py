@@ -19,6 +19,7 @@ for cnt in contours:
     if area > 100:
         x,y,w,h = cv2.boundingRect(cnt)
         boxes.append((x,y,w,h))
+boxes.reverse()
 # 각 선택지 영역에 대한 좌표를 기반으로 표시된 답의 수 계산
 results = []
 for i in range(len(boxes)):
